@@ -1,9 +1,7 @@
 <?php
 
-
-
 /**
- *
+ * Retrieve ID of current git HEAD.
  *
  *
  */
@@ -15,24 +13,28 @@ class CommitPrint {
 	private $pathToGit;
 
 	/**
+	 * Default constructor.
 	 *
-	 *
+	 * @param 	string 		Optional. Path to the git folder.
 	 */
 	public function __construct($gitPath='.git/') {
 		$this->pathToGit = $gitPath;
 	}
 
 	/**
+	 * Shortcut for getCommit.
 	 *
-	 *
+	 * @return 	string
 	 */
 	public function get() {
 		return $this->getCommit();
 	}
 
 	/**
+	 * Get the name or path of the current branch.
 	 *
-	 *
+	 * @param 	bool 	Return the name if true. Return the full ref path if false.
+	 * @return 	string 	The name of path of the current branch.
 	 */
 	public function getBranch($name=true) {
 		$head = $this->getGitFileContents('HEAD');
@@ -50,8 +52,9 @@ class CommitPrint {
 	}
 
 	/**
+	 * Get the commit ID of HEAD.
 	 *
-	 *
+	 * @return 	string 		Commit ID.
 	 */
 	public function getCommit() {
 		$branch = $this->getBranch(false);
@@ -60,6 +63,9 @@ class CommitPrint {
 	}
 
 
+	/**
+	 * @return 	string
+	 */
 	private function getGitFileContents($path) {
 		$file = $this->pathToGit . $path;
 
